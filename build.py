@@ -11,7 +11,7 @@ DIR = Path('src')
 
 def lib_files(s: Path) -> Path:
     if s.stem != "main" and s.suffix == ".py":
-        return name
+        return s.stem
     return None
 
 
@@ -51,8 +51,10 @@ def copy_files():
 
 
 def main():
-    erase_flash()
-    write_flash()
+    reflash = input("reflash? [y/N] ")
+    if reflash and reflash.lower() in 'yes':
+        erase_flash()
+        write_flash()
     build_libs()
     while not os.path.exists("/dev/ttyUSB0"):
         continue
